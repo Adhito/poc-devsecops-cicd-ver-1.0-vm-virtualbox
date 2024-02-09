@@ -72,7 +72,7 @@ pipeline {
                 sh 'docker rm devsecops-front-end'
                 sh 'docker image rm adhito909/devsecops-front-end:latest'
                 sh 'docker run -d --name devsecops-front-end -p 8081:80 adhito909/devsecops-front-end:latest'
-                sh 'docker image prune -f'
+                // sh 'docker image prune -f'
             }
         }
 
