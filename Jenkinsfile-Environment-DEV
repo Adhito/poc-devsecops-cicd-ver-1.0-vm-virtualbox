@@ -1,0 +1,76 @@
+
+pipeline {
+    agent any
+    tools {
+        jdk 'jdk-17.35'
+        nodejs 'nodejs-16.2.0'
+    }
+    environment {
+        SCANNER_HOME = tool 'sonar-scanner'
+    }
+    stages {
+        stage('clean workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+        stage('Checkout from Git') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Adhito/project-devsecops-cicd-ver-1.0-vm-virtualbox.git'
+            }
+        }
+        stage("Sonarqube Analysis") {
+            steps {
+                withSonarQubeEnv('vm-sonar-server') {
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=DevSecOps-FrontEnd \
+                    -Dsonar.projectKey=DevSecOps-FrontEnd'''
+                }
+            }
+        }
+        stage("quality gate") {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'credential-devsecops-sonarcube-token01'
+                }
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh "npm install"
+            }
+        }
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'dependency-check-9.0.9'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.txt"
+            }
+        }
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'credential-devsecops-dockerhub-account01', toolName: 'docker'){   
+                       sh "docker build --build-arg TMDB_V3_API_KEY=1234567890 -t devsecops-front-end ."
+                       sh "docker tag devsecops-front-end adhito909/devsecops-front-end:latest "
+                       sh "docker push adhito909/devsecops-front-end:latest "
+                    }
+                }
+            }
+        }
+        stage("TRIVY"){
+            steps{
+                sh "trivy image adhito909/devsecops-front-end:latest > trivyimage.txt" 
+            }
+        }
+        stage('Deploy to container'){
+            steps{
+                sh 'docker run -d --name devsecops-front-end -p 8081:80 adhito909/devsecops-front-end:latest'
+            }
+        }
+
+    }
+}
