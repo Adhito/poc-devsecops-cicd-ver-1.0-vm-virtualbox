@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'main', url: 'https://github.com/Adhito/project-devsecops-cicd-ver-1.0-vm-virtualbox.git'
+                git branch: 'main', url: 'https://github.com/N4si/DevSecOps-Project.git'
             }
         }
         stage("Sonarqube Analysis") {
@@ -68,7 +68,11 @@ pipeline {
         }
         stage('Deploy to container'){
             steps{
+                sh 'docker stop devsecops-front-end'
+                sh 'docker rm devsecops-front-end'
+                sh 'docker image rm adhito909/devsecops-front-end:latest'
                 sh 'docker run -d --name devsecops-front-end -p 8081:80 adhito909/devsecops-front-end:latest'
+                sh 'docker image prune -f'
             }
         }
 
