@@ -50,13 +50,18 @@ pipeline {
                 sh "trivy fs . > trivyfs.txt"
             }
         }
+        
+
         stage("Docker Image Build & Push"){
+            
             steps{
-                script{
-                   withDockerRegistry(credentialsId: 'credential-devsecops-dockerhub-account01', toolName: 'docker'){   
-                       sh "docker build --build-arg TMDB_V3_API_KEY=1234567890 -t devsecops-front-end ."
-                       sh "docker tag devsecops-front-end adhito909/devsecops-front-end:latest "
-                       sh "docker push adhito909/devsecops-front-end:latest "
+                retry(3) {
+                    script{
+                       withDockerRegistry(credentialsId: 'credential-devsecops-dockerhub-account01', toolName: 'docker'){   
+                           sh "docker build --build-arg TMDB_V3_API_KEY=1234567890 -t devsecops-front-end ."
+                           sh "docker tag devsecops-front-end adhito909/devsecops-front-end:latest "
+                           sh "docker push adhito909/devsecops-front-end:latest "
+                        }
                     }
                 }
             }
