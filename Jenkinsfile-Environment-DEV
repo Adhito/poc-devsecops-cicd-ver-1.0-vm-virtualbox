@@ -9,12 +9,12 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
-        stage('clean workspace') {
+        stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
         }
-        stage('Checkout from Git') {
+        stage('Checkout From Git') {
             steps {
                 git branch: 'main', url: 'https://github.com/Adhito/project-devsecops-cicd-ver-1.0-vm-virtualbox.git'
             }
@@ -27,30 +27,30 @@ pipeline {
                 }
             }
         }
-        stage("quality gate") {
+        stage("Sonarqube Quality Gate") {
             steps {
                 script {
                     waitForQualityGate abortPipeline: false, credentialsId: 'credential-devsecops-sonarcube-token01'
                 }
             }
         }
-        stage('Install Dependencies') {
+        stage('NPM Install Dependencies') {
             steps {
                 sh "npm install"
             }
         }
-        stage('OWASP FS SCAN') {
+        stage('Security OWASP FS Scan') {
             steps {
                 dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'dependency-check-9.0.9'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
-        stage('TRIVY FS SCAN') {
+        stage('Security Trivy FS Scan') {
             steps {
                 sh "trivy fs . > trivyfs.txt"
             }
         }
-        stage("Docker Build & Push"){
+        stage("Docker Image Build & Push"){
             steps{
                 script{
                    withDockerRegistry(credentialsId: 'credential-devsecops-dockerhub-account01', toolName: 'docker'){   
@@ -61,12 +61,12 @@ pipeline {
                 }
             }
         }
-        stage("TRIVY"){
+        stage("Docker Image Trivy Scan"){
             steps{
                 sh "trivy image adhito909/devsecops-front-end:latest > trivyimage.txt" 
             }
         }
-        stage('Deploy to container'){
+        stage('Docker Container Deployment'){
             steps{
                 sh 'docker stop devsecops-front-end'
                 sh 'docker rm devsecops-front-end'
