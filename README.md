@@ -19,8 +19,8 @@
 - Add the current user to the sudoers group, otherwise you wont be able to install various library
 
 
-[] TODO 1
-[] TODO 2
-[] TODO 3
-[] TODO 4
+- [ ] TODO 1
+- [ ] TODO 2
+- [ ] TODO 3
+- [ ] TODO 4
 
