@@ -1,4 +1,4 @@
-# project-devsecops-cicd-ver-1.0-vm-virtualbox
+# Project DevSecOps CICD Version 1.0 VM on Local (VirtualBox)
 
 
 - TODO 1
