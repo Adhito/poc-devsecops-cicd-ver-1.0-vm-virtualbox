@@ -20,7 +20,7 @@
 
 
 - [ ] TODO : Provide detailed steps on adding current user to sudoers group at Sub-Stage 1.2
-- [ ] TODO : Prove VM Formation / Architecture 
-- [ ] TODO 3
-- [ ] TODO 4
+- [ ] TODO : Provide VM Formation / Architecture 
+- [ ] TODO :
+- [ ] TODO :
 
