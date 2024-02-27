@@ -48,7 +48,27 @@
     docker rm devsecops-sample-hello-world
     ```
 
-    
+
+
+### **Stage 2: Security Scanning For Code and Container Image**
+
+
+**Sub-Stage 2.0: Setup & Install SonarQube (Docker & Docker-Compose):**
+    - Install SonarQube and Trivy on the VM instance to scan for vulnerabilities with Docker Standalone
+        
+        Sonarqube Standalone
+        ```
+        docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
+        ```
+    - Install SonarQube and Trivy on the VM instance to scan for vulnerabilities with Docker Compose
+        
+        Sonarqube & PostgreSQL To Store Data
+        ```
+        docker-compose up $docker_compose_script 
+        ```
+        
+        
+
 
 - [ ] TODO : Provide detailed steps on adding current user to sudoers group at Sub-Stage 1.2
 - [ ] TODO : Provide VM Formation / Architecture 
