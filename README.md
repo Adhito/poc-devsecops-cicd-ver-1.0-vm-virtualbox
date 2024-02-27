@@ -9,7 +9,7 @@
 - Provision a new VM (DEVCICDJENKINS01) with Ubuntu 22.04.
 - If guest mode if checked on the virtualbox then you don't need to input all the credential (user, timezone & etc) since it will be automatically created.
 
-**Sub-Stage 1.2: Setup & Update the VM:**
+**Sub-Stage 1.2: Setup & Update the VM Latest Security Patch:**
 
 - Once the installation is complete ensure the VM is up to date
     
@@ -18,6 +18,9 @@
     ```
 - Add the current user to the sudoers group, otherwise you wont be able to install various library
 
+
+
+    
 
 - [ ] TODO : Provide detailed steps on adding current user to sudoers group at Sub-Stage 1.2
 - [ ] TODO : Provide VM Formation / Architecture 
