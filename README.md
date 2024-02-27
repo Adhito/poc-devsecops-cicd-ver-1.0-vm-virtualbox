@@ -66,8 +66,11 @@
         ```
         docker-compose up $docker_compose_script 
         ```
-        
-        
+- Once SonarQube is installed, you can access it on : 
+
+        <VM-IP-adress>:9000 
+  Note : If you install SonarQube with default settings then the default username & password is admin        
+
 
 
 - [ ] TODO : Provide Detailed steps on adding current user to sudoers group at Sub-Stage 1.2
