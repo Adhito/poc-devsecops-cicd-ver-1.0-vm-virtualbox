@@ -50,6 +50,8 @@
 
 
 
+
+<br><br><br>
 ### **Stage 2: Security Scanning For Code and Container Image**
 
 
