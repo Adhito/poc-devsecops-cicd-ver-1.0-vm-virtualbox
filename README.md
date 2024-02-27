@@ -32,8 +32,8 @@
     sudo usermod -a -G docker $USER
     newgrp docker
     ```
-    Note :  Please replace $USER with your system's username, e.g., 'ubuntu'  
-    Note : Once the installation complete do keep in mind to logout and login again in order for the changes to take effect  
+    **Note** :  Please replace $USER with your system's username, e.g., 'ubuntu'  
+    **Note** : Once the installation complete do keep in mind to logout and login again in order for the changes to take effect  
 
 
 - Testing You Docker With Sample Docker Containers:
@@ -69,7 +69,7 @@
 - Once SonarQube is installed, you can access it on : 
 
         <VM-IP-adress>:9000 
-  Note : If you install SonarQube with default settings then the default username & password is admin        
+  **Note** : If you install SonarQube with default settings then the default username & password is admin        
 
 
 
