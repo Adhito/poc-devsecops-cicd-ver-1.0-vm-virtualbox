@@ -32,9 +32,21 @@
     sudo usermod -a -G docker $USER
     newgrp docker
     ```
-    N.B :  Please replace $USER with your system's username, e.g., 'ubuntu'
+    Note :  Please replace $USER with your system's username, e.g., 'ubuntu'
+    Note : Once the installation complete do keep in mind to logout and login again in order for the changes to take effect
 
-    Once the installation complete do keep in mind to logout and login again in order for the changes to take effect
+
+- Testing You Docker With Sample Docker Containers:
+    
+    ```bash
+    ## To Run The Container
+    docker pull hello-world
+    docker run -d --name devsecops-sample-hello-world -p 80:80 hello-world:latest
+    
+    ## To Stop & Delete The Container
+    docker stop devsecops-sample-hello-world
+    docker rm devsecops-sample-hello-world
+    ```
 
     
 
