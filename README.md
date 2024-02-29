@@ -137,9 +137,9 @@
     nat_ip_adress:8080
     ```
 
-<br>
+
 **Sub-Stage 3.2: Setup & Install Necessary Plugins:**
-<br>
+
 Login To Your Jenkins → Manage Jenkins → Plugins → Available Plugins →
 <br>
 Select The Following Plugins :
