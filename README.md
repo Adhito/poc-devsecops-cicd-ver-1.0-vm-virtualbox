@@ -98,7 +98,46 @@
     ```
     trivy image <container_imageid>
     ```
+
+
+
+
+<br><br><br>
+### **Stage 3: Continous Integration and Continous Deployment (CI/CD) Setup**
+
+**Sub-Stage 2.1: Setup & Install Jenkins:**
+
+- Install Java Version 17 / 21
+    ```bash
+    sudo apt update
+    sudo apt install fontconfig openjdk-17-jre
+    java -version
+    openjdk version "17.0.8" 2023-07-18
+    OpenJDK Runtime Environment (build 17.0.8+7-Debian-1deb12u1)
+    OpenJDK 64-Bit Server VM (build 17.0.8+7-Debian-1deb12u1, mixed mode, sharing)
+    ```
+
+
+- Install Jenkins on the DEVCICDJENKINS01 VM instance to enable automatic deployment :
+    ```bash
+    #jenkins
+    sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+    https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+    /etc/apt/sources.list.d/jenkins.list > /dev/null
+    sudo apt-get update
+    sudo apt-get install jenkins
+    sudo systemctl start jenkins
+    sudo systemctl enable jenkins
+    ```
+    
+- Access Jenkins in a web browser using the NAT IP of your DEVCICDJENKINS01 VM instance.
+    ```
+    nat_ip_adress:8080
+    ```
   
+
 
 <br><br><br>
 - [ ] TODO : Provide Detailed steps on adding current user to sudoers group at Sub-Stage 1.2
