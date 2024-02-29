@@ -104,6 +104,6 @@
 - [ ] TODO : Provide Detailed steps on adding current user to sudoers group at Sub-Stage 1.2
 - [ ] TODO : Provide VM Formation / Architecture 
 - [ ] TODO : Provide Detailed Docker Compose Script at Sub-Stage 2.1
-- [ ] TODO :
+- [ ] TODO : Research on using Trivy with Container Engine (Docker/Podman) instead of local installation
 - [ ] TODO :
 
