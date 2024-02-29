@@ -76,6 +76,30 @@
   **Note** : If you install SonarQube with default settings then the default username & password is admin        
 
 
+**Sub-Stage 2.2: Setup & Install Trivy (Docker & Apt Install):**
+- Install Trivy on the VM instance to scan for vulnerabilities with Docker Standalone
+        
+    ```bash 
+    ## Trivy Docker
+    $ docker command here
+    ```
+- Install Trivy on the VM instance to scan for vulnerabilities with APT install
+        
+    ```bash 
+    ## Trivy Standalone
+    sudo apt-get install wget apt-transport-https gnupg lsb-release
+    wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+    echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+    sudo apt-get update
+    sudo apt-get install trivy    
+    ```
+    
+  To scan image using trivy
+    ```
+    trivy image <container_imageid>
+    ```
+  
+
 <br><br><br>
 - [ ] TODO : Provide Detailed steps on adding current user to sudoers group at Sub-Stage 1.2
 - [ ] TODO : Provide VM Formation / Architecture 
