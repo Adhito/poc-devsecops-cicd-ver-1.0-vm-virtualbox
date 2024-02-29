@@ -105,7 +105,7 @@
 <br><br><br>
 ### **Stage 3: Continous Integration and Continous Deployment (CI/CD) Setup**
 
-**Sub-Stage 2.1: Setup & Install Jenkins:**
+**Sub-Stage 3.1: Setup & Install Jenkins:**
 
 - Install Java Version 17 / 21
     ```bash
@@ -136,7 +136,18 @@
     ```
     nat_ip_adress:8080
     ```
-  
+
+
+**Sub-Stage 3.2: Setup & Install Necessary Plugins:**
+Login To Your Jenkins → Manage Jenkins → Plugins → Available Plugins →
+Select The Following Plugins :
+
+- Eclipse Temurin Installer (Install without restart)
+- Email Extension Plugin
+- NodeJs Plugin (Install Without restart)
+- SonarQube Scanner (Install without restart)
+
+
 
 
 <br><br><br>
