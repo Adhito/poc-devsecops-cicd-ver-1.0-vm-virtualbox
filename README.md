@@ -56,14 +56,14 @@
 
 
 **Sub-Stage 2.1: Setup & Install SonarQube (Docker & Docker-Compose):**
-- Install SonarQube and Trivy on the VM instance to scan for vulnerabilities with Docker Standalone
+- Install SonarQube on the VM instance to scan for vulnerabilities with Docker Standalone
         
     ```bash 
     ## Sonarqube Standalone
     docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
     ```
   
-- Install SonarQube and Trivy on the VM instance to scan for vulnerabilities with Docker Compose
+- Install SonarQube on the VM instance to scan for vulnerabilities with Docker Compose
         
     ```bash 
     ## Sonarqube & PostgreSQL To Store Data
